@@ -1,0 +1,16 @@
+name: My First Automation Workflow
+
+# Коли запускати?
+on: [push, workflow_dispatch]
+
+jobs:
+  # Назва роботи
+  hello-job:
+    runs-on: ubuntu-latest # На якій ОС запускати
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # Копіює твій код на ранер
+
+      - name: Just a simple message
+        run: echo "Hello, Testomat user! GitHub Actions is alive."
