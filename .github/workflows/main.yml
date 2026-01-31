@@ -1,16 +1,14 @@
-name: My First Automation Workflow
+name: Wiki Tests Automation
 
-# Коли запускати?
-on: [push, workflow_dispatch]
+on: 
+  push:
+    branches: [ main ]
+  workflow_dispatch: # Це дозволить тобі запускати тест кнопкою вручну
 
 jobs:
-  # Назва роботи
-  hello-job:
-    runs-on: ubuntu-latest # На якій ОС запускати
-    
+  hello-job: # Назва має бути без пробілів
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4 # Копіює твій код на ранер
-
-      - name: Just a simple message
-        run: echo "Hello, Testomat user! GitHub Actions is alive."
+      - uses: actions/checkout@v4
+      - name: Hello
+        run: echo "Runner is working!"
