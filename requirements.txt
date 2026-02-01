@@ -1,1 +1,14 @@
+pandas==1.5.1
+psycopg
+pytest==7.2.0
+pytest-xdist==3.5.0
+pytest-rerunfailures==13.0
+requests==2.28.1
+pip-system-certs
+requests-toolbelt==0.9.1
+xlrd==2.0.1
+maxminddb-geolite2==2018.703
+beautifulsoup4==4.12.3
+jsonschema==4.23.0
 python-dotenv==1.1.1
+pytest-playwright==0.7.0
