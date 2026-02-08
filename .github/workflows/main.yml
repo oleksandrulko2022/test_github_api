@@ -22,6 +22,10 @@ jobs:
     env:
       env: cicd
       host: ${{ github.event.inputs.host }}
+    strategy:
+      matrix:
+        browser: [chromium, firefox, webkit]
+    
     steps:
     - uses: actions/checkout@v4
 
