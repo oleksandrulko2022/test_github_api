@@ -9,7 +9,7 @@ parent_dir = os.path.dirname(current_dir)
 
 match env:
     case 'jenkins':
-        dotenv_path = os.path.join(parent_dir, '.env.jenkins')
+        dotenv_path = os.path.join(parent_dir, '.env.cicd')
     case 'local':
         dotenv_path = os.path.join(parent_dir, '.env.local')
 

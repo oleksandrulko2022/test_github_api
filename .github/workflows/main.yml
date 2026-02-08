@@ -1,14 +1,40 @@
-name: Wiki Tests Automation
-
-on: 
-  push:
-    branches: [ main ]
-  workflow_dispatch: # Це дозволить тобі запускати тест кнопкою вручну
-
+name: Manual Playwright Tests
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: 'Який хост використовувати? (напр. https://www.wikipedia.org)'
+        required: true
+        default: 'https://www.wikipedia.org'
+      browser:
+        description: 'Браузер для тестування'
+        required: true
+        type: choice
+        options:
+          - chromium
+          - firefox
+          - webkit
+        default: 'chromium'
 jobs:
-  hello-job: # Назва має бути без пробілів
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - name: Hello
-        run: echo "Runner is working!"
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Ensure browsers are installed
+      run: python -m playwright install --with-deps
+
+    - name: Run Pytest with arguments
+      run: |
+        pytest -m ${{ github.event.inputs.host }}
