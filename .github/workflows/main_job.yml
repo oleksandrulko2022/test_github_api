@@ -1,0 +1,32 @@
+name: Multi-Job Experiment
+
+on: 
+  workflow_dispatch: # Запускаємо вручну для тестів
+
+jobs:
+  setup:
+    runs-on: ubuntu-latest
+    steps:
+        run: echo "Main Job Started"
+  call-slave-tests:
+    needs: setup
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Slave Job 1 (Regression)
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: slave_job_1.yml
+          ref: main
+      - name: Trigger Slave Job 2 (Smoke)
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: slave_job_2.yml
+          ref: main
+      - name: Trigger Slave Job 3 (Sanity)
+        uses: benc-uk/workflow-dispatch@v1
+        with:
+          workflow: slave_job_3.yml
+          ref: main
+
+
+  
