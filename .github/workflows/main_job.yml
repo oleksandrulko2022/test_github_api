@@ -18,13 +18,16 @@ jobs:
         with:
           workflow: slave_job_1.yml
           ref: main
+          token: ${{ secrets.MY_TOKEN }}
       - name: Trigger Slave Job 2 (Smoke)
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: slave_job_2.yml
           ref: main
+          token: ${{ secrets.MY_TOKEN }}
       - name: Trigger Slave Job 3 (Sanity)
         uses: benc-uk/workflow-dispatch@v1
         with:
           workflow: slave_job_3.yml
           ref: main
+          token: ${{ secrets.MY_TOKEN }}
