@@ -1,0 +1,32 @@
+name: 'Setup Playwright Python'
+description: 'Універсальний крок для підготовки оточення'
+inputs:
+  python-version:
+    description: 'Версія Python'
+    default: '3.10'
+  install-browsers:
+    description: 'Чи встановлювати браузери?'
+    default: 'true'
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Cache pip
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+
+    - name: Install dependencies
+      shell: bash
+      run: pip install -r requirements.txt
+
+    - name: Install Playwright Browsers
+      if: ${{ inputs.install-browsers == 'true' }}
+      shell: bash
+      run: playwright install --with-deps
