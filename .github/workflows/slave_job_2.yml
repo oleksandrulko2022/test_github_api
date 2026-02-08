@@ -7,4 +7,5 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
+      - name: Run Smoke
         run: echo "Smoke Started"

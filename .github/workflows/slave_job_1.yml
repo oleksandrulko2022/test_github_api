@@ -7,4 +7,5 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
+      - name: Run Regression
         run: echo "Regression Started"
