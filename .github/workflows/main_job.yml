@@ -7,7 +7,7 @@ jobs:
   setup:
     runs-on: ubuntu-latest
     steps:
-        run: echo "Main Job Started"
+      - run: echo "Main Job Started"
   call-slave-tests:
     needs: setup
     runs-on: ubuntu-latest
@@ -27,6 +27,3 @@ jobs:
         with:
           workflow: slave_job_3.yml
           ref: main
-
-
-  
