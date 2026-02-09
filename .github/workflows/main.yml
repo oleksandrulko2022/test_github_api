@@ -19,12 +19,9 @@ jobs:
   test:
     timeout-minutes: 60
     runs-on: ubuntu-latest
-    env:
-      env: cicd
-      host: ${{ github.event.inputs.host }}
     strategy:
       matrix:
-        browser: [chromium, firefox, webkit]
+        browser: [chrome, firefox, webkit]
     steps:
     - uses: actions/checkout@v4
 
@@ -54,6 +51,10 @@ jobs:
       run: python -m playwright install --with-deps
 
     - name: Run Pytest with arguments
+      env:
+        env: cicd
+        host: ${{ github.event.inputs.host }}
+        browser: ${{ matrix.browser }}
       run: |
         pytest -v
 
