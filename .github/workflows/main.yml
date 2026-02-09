@@ -56,3 +56,11 @@ jobs:
     - name: Run Pytest with arguments
       run: |
         pytest -v
+
+    - name: Upload Test Videos
+      if: always() # Відео завантажаться навіть якщо тести впадуть
+      uses: actions/upload-artifact@v4
+      with:
+        name: playwright-videos-${{ matrix.browser }} # Додаємо назву браузера в ім'я архіву
+        path: videos/ # Шлях має збігатися з record_video_dir у вашому Python коді
+        retention-days: 7
