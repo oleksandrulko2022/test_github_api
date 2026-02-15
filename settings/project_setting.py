@@ -26,3 +26,5 @@ BROWSER_HEADLESS = os.getenv('BROWSER_HEADLESS')
 PW_EXPECT_TIMEOUT = os.getenv('PW_EXPECT_TIMEOUT')
 PW_PAGE_TIMEOUT = os.getenv('PW_PAGE_TIMEOUT')
 PW_API_TIMEOUT = os.getenv('PW_API_TIMEOUT')
+
+AI_API_KEY = os.getenv('aiApiKey', default=os.getenv('AI_API_KEY'))
